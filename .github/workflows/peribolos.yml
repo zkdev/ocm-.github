@@ -1,0 +1,107 @@
+name: Peribolos Organization Sync
+
+on:
+  # Run daily at 3:17 AM UTC (off-peak time)
+  schedule:
+    - cron: '17 3 * * *'
+
+  # Allow manual execution
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Apply changes (true) or dry-run (false)'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'false'
+          - 'true'
+
+  # Run on changes to the peribolos config
+  push:
+    branches:
+      - main
+    paths:
+      - 'peribolos.yaml'
+      - '.github/workflows/peribolos.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  sync-organization:
+    name: Sync GitHub Organization
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+
+      - name: Install Peribolos
+        run: |
+          go install sigs.k8s.io/prow/cmd/peribolos@latest
+          echo "$(go env GOPATH)/bin" >> $GITHUB_PATH
+
+      - name: Verify Peribolos installation
+        run: peribolos --help
+
+      - name: Determine confirm flag
+        id: confirm
+        run: |
+          # For manual workflow_dispatch, use the input value
+          # For scheduled runs and pushes, default to false (dry-run)
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "value=${{ github.event.inputs.confirm }}" >> $GITHUB_OUTPUT
+          else
+            echo "value=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Run Peribolos (dry-run)
+        if: steps.confirm.outputs.value == 'false'
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERIBOLOS_GITHUB_TOKEN }}
+        run: |
+          echo "🔍 Running Peribolos in dry-run mode..."
+          peribolos \
+            --config-path peribolos.yaml \
+            --github-token-path <(echo "$GITHUB_TOKEN") \
+            --fix-org \
+            --fix-org-members \
+            --fix-teams \
+            --fix-team-members \
+            --confirm=false \
+            --require-self=true \
+            --min-admins=2 \
+            --maximum-removal-delta=0.3
+
+      - name: Run Peribolos (apply changes)
+        if: steps.confirm.outputs.value == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERIBOLOS_GITHUB_TOKEN }}
+        run: |
+          echo "✅ Running Peribolos with confirmation - changes will be applied..."
+          peribolos \
+            --config-path peribolos.yaml \
+            --github-token-path <(echo "$GITHUB_TOKEN") \
+            --fix-org \
+            --fix-org-members \
+            --fix-teams \
+            --fix-team-members \
+            --confirm=true \
+            --require-self=true \
+            --min-admins=2 \
+            --maximum-removal-delta=0.3
+
+      - name: Summary
+        if: always()
+        run: |
+          if [ "${{ steps.confirm.outputs.value }}" = "true" ]; then
+            echo "✅ Peribolos sync completed with changes applied"
+          else
+            echo "🔍 Peribolos dry-run completed - no changes were made"
+            echo "To apply changes, run this workflow manually and set confirm=true"
+          fi

@@ -1,0 +1,258 @@
+orgs:
+  open-component-model:
+    # Organization settings
+    name: Open Component Model
+    description: An open standard to describe software artifact delivery.
+    company: ""
+    email: ""
+    location: Germany
+    billing_email: operations@neonephos.org
+    has_organization_projects: true
+    has_repository_projects: true
+    default_repository_permission: read
+    members_can_create_repositories: true
+
+    # Organization admins (owner role)
+    admins:
+    - ajinkyapatil8190
+    - christianneu
+    - fabianburth
+    - frewilhelm
+    - jakobmoellerdev
+    - LF-Europe
+    - Shegox
+    - zkdev
+
+    # Organization members (member role)
+    members:
+    - 8R0WNI3
+    - a-thaler
+    - achimweigel
+    - AleksandarSavchev
+    - AlexandraHaenig
+    - alexbass01
+    - bedirhan-yilmaz
+    - BoHristova
+    - cbrgm
+    - ccwienk
+    - ChiaraP812
+    - ChrisSchneider
+    - dee0
+    - dee0sap
+    - Diaphteiros
+    - dnaeon
+    - enrico-kaack-comp
+    - Franziska-Schallhorn
+    - guewa
+    - HeckEK
+    - heldkat
+    - hilmarf
+    - hoeltcl
+    - ikhandamirov
+    - iljaweis
+    - In-Ko
+    - JanAms130
+    - jensh007
+    - jkafka23
+    - jneisener
+    - lsroe
+    - mandelsoft
+    - matthiasbruns
+    - maximilianbraun
+    - mayankraipure12
+    - michael-kerr
+    - mohammad-ammar14
+    - morri-son
+    - morrison-sap
+    - n-boshnakov
+    - olisonsturm
+    - piotrjanik
+    - rebEllieous
+    - reshnm
+    - robertgraeff
+    - robertwol
+    - SebastianWolf-SAP
+    - shivenduverma-sap
+    - sidhishruti22
+    - sk31337
+    - Skarlso
+    - sleungcy-sap
+    - Technovation22
+    - ThormaehlenFred
+    - TomRomeo
+    - TorstenD-SAP
+    - trevex
+    - TuanAnh17N
+    - vasu1124
+
+    # Teams
+    teams:
+      admins:
+        description: Admins for the Open Component Model Organization
+        privacy: closed
+        maintainers:
+        - fabianburth
+        - frewilhelm
+        - jakobmoellerdev
+        - zkdev
+
+      cnlm-core:
+        description: Cloud Native Lifecycle Mgmt Core Team (OCM, Landscaper, MCP)
+        privacy: closed
+        members:
+        - achimweigel
+        - Diaphteiros
+        - enrico-kaack-comp
+        - guewa
+        - hilmarf
+        - ikhandamirov
+        - In-Ko
+        - maximilianbraun
+        - n-boshnakov
+        - reshnm
+        - robertgraeff
+        - sk31337
+
+      collaborators:
+        description: Collaborators for the Open Component Model (Triage permission)
+        privacy: closed
+        members:
+        - achimweigel
+        - AlexandraHaenig
+        - BoHristova
+        - dee0
+        - dee0sap
+        - Diaphteiros
+        - enrico-kaack-comp
+        - guewa
+        - hilmarf
+        - ikhandamirov
+        - In-Ko
+        - maximilianbraun
+        - mayankraipure12
+        - michael-kerr
+        - mohammad-ammar14
+        - n-boshnakov
+        - reshnm
+        - robertgraeff
+        - robertwol
+        - sidhishruti22
+        - sk31337
+        - sleungcy-sap
+        - Technovation22
+        - vasu1124
+
+      community:
+        description: OCM Community
+        privacy: closed
+        maintainers:
+        - jakobmoellerdev
+        members:
+        - cbrgm
+        - iljaweis
+        - rebEllieous
+        - trevex
+
+      maintainers:
+        description: OCM project maintainers
+        privacy: closed
+        maintainers:
+        - fabianburth
+        - frewilhelm
+        - jakobmoellerdev
+        - zkdev
+        members:
+        - 8R0WNI3
+        - a-thaler
+        - alexbass01
+        - ChrisSchneider
+        - jneisener
+        - matthiasbruns
+        - morri-son
+        - piotrjanik
+        - Skarlso
+
+      ocm-kit:
+        description: ""
+        privacy: closed
+        maintainers:
+        - iljaweis
+        - trevex
+        members:
+        - cbrgm
+        - rebEllieous
+
+      odg-collaborators:
+        description: Members are privileged to have "write" permissions to ODG related repositories.
+        privacy: closed
+        maintainers:
+        - 8R0WNI3
+        - zkdev
+        members:
+        - AleksandarSavchev
+        - alexbass01
+        - bedirhan-yilmaz
+        - ccwienk
+        - ChiaraP812
+        - ChrisSchneider
+        - dnaeon
+        - Franziska-Schallhorn
+        - heldkat
+        - JanAms130
+        - lsroe
+        - TomRomeo
+        - TorstenD-SAP
+        - TuanAnh17N
+
+      odg-maintainers:
+        description: ODG (Open Delivery Gear) Maintainers
+        privacy: closed
+        maintainers:
+        - 8R0WNI3
+        - zkdev
+        members:
+        - a-thaler
+        - alexbass01
+        - ChrisSchneider
+
+      project-management:
+        description: OCM Project Managers with Access to all Project Data
+        privacy: closed
+        maintainers:
+        - fabianburth
+        - jakobmoellerdev
+        members:
+        - AlexandraHaenig
+
+      security:
+        description: Access to all security data
+        privacy: closed
+        members:
+        - ccwienk
+        - HeckEK
+        - heldkat
+        - hoeltcl
+        - maximilianbraun
+        - morri-son
+
+      sig-runtime:
+        description: Special Interest Group Runtime (https://github.com/open-component-model/open-component-model/tree/main/docs/community/SIGs/Runtime)
+        privacy: closed
+        maintainers:
+        - fabianburth
+        - frewilhelm
+        - jakobmoellerdev
+        - Skarlso
+
+      tsc:
+        description: OCM Technical Steering Committee
+        privacy: closed
+        maintainers:
+        - fabianburth
+        - jakobmoellerdev
+        - zkdev
+        members:
+        - 8R0WNI3
+        - iljaweis
+        - morri-son
+        - Skarlso
